@@ -38,14 +38,14 @@ const CoursesList = () => {
             key={course.uid}
             maxW={{ base: "100%", sm: "xs" }}
             borderWidth="1px"
-            borderColor="blue.500"
+            borderColor="purple.300"
             borderRadius="lg"
             overflow="hidden"
-            boxShadow="xl"
+            boxShadow="0px 4px 10px rgba(255, 105, 180, 0.5)" // Sombra rosa
             bg="white"
             _hover={{
               transform: "scale(1.02)",
-              boxShadow: "lg",
+              boxShadow: "0px 6px 15px rgba(255, 105, 180, 0.7)", // Sombra más intensa al pasar el mouse
               cursor: "pointer",
             }}
             transition="transform 0.3s ease, box-shadow 0.3s ease"
@@ -67,7 +67,7 @@ const CoursesList = () => {
 
             <CardFooter justify="space-between" flexDirection="row" p={4}>
               <Link to={`/course/${course.uid}`}>
-                <Button colorScheme="blue" width="full">
+                <Button colorScheme="purple" width="full">
                   Ver Curso
                 </Button>
               </Link>

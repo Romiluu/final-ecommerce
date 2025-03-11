@@ -62,7 +62,7 @@ const Home = () => {
           <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={6} mt={8}>
             {courses.map((course) => (
               <Box key={course.id} borderWidth="1px" borderRadius="lg" overflow="hidden" p={4} boxShadow="md">
-                <Image src={course.image} alt={course.name} borderRadius="md" />
+                <Image src={course.image_url} alt={course.name} borderRadius="md" />
                 <VStack align="start" spacing={3} mt={4}>
                   <Heading as="h3" size="md">{course.name}</Heading>
                   <Text fontSize="lg" fontWeight="bold" color="#AA60C8">{course.price}</Text>
