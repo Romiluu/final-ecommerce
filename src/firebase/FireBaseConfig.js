@@ -1,5 +1,13 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { getFirestore } from "firebase/firestore"; // ⬅️ Falta esta importación
+import { 
+  getAuth, 
+  createUserWithEmailAndPassword, 
+  signInWithEmailAndPassword, 
+  signOut, 
+  GoogleAuthProvider, 
+  signInWithPopup 
+} from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: "TU_API_KEY",
@@ -13,5 +21,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const googleProvider = new GoogleAuthProvider();
+const db = getFirestore(app); 
 
-export { auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, googleProvider, signInWithPopup };
+export { auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, googleProvider, signInWithPopup, db };
