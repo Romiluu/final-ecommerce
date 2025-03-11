@@ -69,7 +69,7 @@ const Header = () => {
 
       {/* Icono del carrito */}
       <Box position="relative" ml={4}>
-        <Link to="/carrito">
+        <Link to="/cart">
           <Button variant="ghost" color="white" _hover={{ bg: "pink.600" }}>
             <Icon as={FaShoppingCart} boxSize={6} />
             <Badge colorScheme="red" borderRadius="full" position="absolute" top="-2px" right="-2px" fontSize="xs" px={2}>

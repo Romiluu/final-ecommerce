@@ -1,20 +1,22 @@
 import { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
-import { db } from "../firebase/FireBaseConfig"; // Importa la configuración de Firebase
+import { db } from "../firebase/FireBaseConfig";
 import { Box, Button, Center, Heading, Image, SimpleGrid, Text, VStack } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router-dom";
+import { useCart } from "../context/CartContext"; // Importa el contexto del carrito
 import CodeMasterImage from "../assets/CodeMaster.png";
 
 const Home = () => {
-  const [courses, setCourses] = useState([]); // Estado para almacenar los cursos
+  const [courses, setCourses] = useState([]);
+  const { addToCart } = useCart(); // Usar el carrito
 
   useEffect(() => {
     const fetchCourses = async () => {
       try {
-        const querySnapshot = await getDocs(collection(db, "courses")); // "courses" es la colección en Firebase
+        const querySnapshot = await getDocs(collection(db, "courses"));
         const coursesData = querySnapshot.docs.map((doc) => ({
           id: doc.id,
-          ...doc.data()
+          ...doc.data(),
         }));
         setCourses(coursesData);
       } catch (error) {
@@ -29,19 +31,13 @@ const Home = () => {
     <Box minHeight="100vh" p={10} pt={0} mt={0}>
       <Center>
         <VStack spacing={6} textAlign="center" maxWidth="800px" mx="auto">
-          {/* Imagen de CodeMaster */}
           <Image src={CodeMasterImage} alt="CodeMaster" maxWidth="100%" height="auto" />
-
           <Heading fontSize="3xl" fontWeight="bold" color="purple.600">
             CONOCE NUESTROS CURSOS
           </Heading>
-
           <Text fontSize="lg" color="gray.600" maxWidth="700px" fontWeight="normal">
             Explora nuestra selección de cursos diseñados para brindarte las mejores habilidades en programación y tecnología.
-            Ya sea que busques iniciarte en la programación o mejorar tus conocimientos, tenemos opciones para ti.
           </Text>
-
-          {/* Botón de Ver Cursos */}
           <Button
             as={RouterLink}
             to="/courses"
@@ -49,7 +45,6 @@ const Home = () => {
             color="#AA60C8"
             fontWeight="bold"
             _hover={{ bg: "#AA60C8", color: "white" }}
-            _active={{ bg: "#AA60C8", color: "white" }}
             borderRadius="30px"
             px="8"  
             py="3"
@@ -58,10 +53,16 @@ const Home = () => {
             Ver Cursos Disponibles
           </Button>
 
-          {/* Grid de Cursos desde Firebase */}
+          {/* Grid de Cursos */}
           <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={6} mt={8}>
             {courses.map((course) => (
-              <Box key={course.id} borderWidth="1px" borderRadius="lg" overflow="hidden" p={4}  boxShadow="0px 4px 10px rgba(255, 105, 180, 0.5)" >
+              <Box 
+                key={course.id} 
+                borderWidth="1px" 
+                borderRadius="lg" 
+                overflow="hidden" 
+                p={4} 
+                boxShadow="0px 4px 10px rgba(255, 105, 180, 0.5)">
                 <Image src={course.image_url} alt={course.name} borderRadius="md" />
                 <VStack align="start" spacing={3} mt={4}>
                   <Heading as="h3" size="md">{course.name}</Heading>

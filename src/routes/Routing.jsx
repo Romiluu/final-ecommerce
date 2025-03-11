@@ -4,6 +4,7 @@ import CoursesList from "../pages/CoursesList";
 import CoursesDetails from"../pages/CoursesDetails";
 import Login from "../auth/Login";
  import Register from "../auth/Register";
+ import Cart from "../pages/Cart";
 
  
  const Routing = () => {
@@ -15,6 +16,7 @@ import Login from "../auth/Login";
        <Route path="*" element={<Navigate to="/" />} /> 
        <Route path="/courses" element={<CoursesList />} />
        <Route path="/courses/:id" element={<CoursesDetails/>} />
+       <Route path="/cart" element={<Cart />} />
      </Routes>
    );
  };
