@@ -65,7 +65,7 @@ const Header = () => {
               fontSize="xs"
               px={2}
             >
-              3 {/* Cambia esto por el estado del carrito */}
+              3 {/* Cambiar esto por el estado del carrito */}
             </Badge>
           </Button>
         </Link>
