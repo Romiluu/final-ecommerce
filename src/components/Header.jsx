@@ -38,7 +38,7 @@ const Header = () => {
         </Link>
         <Link to="/productos">
           <Button variant="ghost" color="white" _hover={{ bg: "pink.600", color: "white" }}>
-            Lista de Productos
+            Lista de Cursos
           </Button>
         </Link>
         <Link to="/login">
