@@ -1,6 +1,7 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import Home from "../pages/Home";
 import CoursesList from "../pages/CoursesList";
+import CoursesDetails from"../pages/CoursesDetails";
 import Login from "../auth/Login";
  import Register from "../auth/Register";
 
@@ -13,6 +14,7 @@ import Login from "../auth/Login";
        <Route path="/register" element={<Register />} />
        <Route path="*" element={<Navigate to="/" />} /> 
        <Route path="/courses" element={<CoursesList />} />
+       <Route path="/courses/:id" element={<CoursesDetails/>} />
      </Routes>
    );
  };

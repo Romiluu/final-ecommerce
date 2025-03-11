@@ -41,7 +41,7 @@ const Home = () => {
             Ya sea que busques iniciarte en la programación o mejorar tus conocimientos, tenemos opciones para ti.
           </Text>
 
-          {/* Botón de Productos */}    
+          {/* Botón de Ver Cursos */}
           <Button
             as={RouterLink}
             to="/courses"
@@ -61,12 +61,10 @@ const Home = () => {
           {/* Grid de Cursos desde Firebase */}
           <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={6} mt={8}>
             {courses.map((course) => (
-              <Box key={course.id} borderWidth="1px" borderRadius="lg" overflow="hidden" p={4} boxShadow="md">
+              <Box key={course.id} borderWidth="1px" borderRadius="lg" overflow="hidden" p={4}  boxShadow="0px 4px 10px rgba(255, 105, 180, 0.5)" >
                 <Image src={course.image_url} alt={course.name} borderRadius="md" />
                 <VStack align="start" spacing={3} mt={4}>
                   <Heading as="h3" size="md">{course.name}</Heading>
-                  <Text fontSize="lg" fontWeight="bold" color="#AA60C8">{course.price}</Text>
-                  <Button colorScheme="purple">Ver Detalle</Button>
                 </VStack>
               </Box>
             ))}
