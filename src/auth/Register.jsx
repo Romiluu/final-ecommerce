@@ -1,24 +1,20 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
-import { useForm } from "react-hook-form";
-import { Box, Input, Button, FormLabel, FormControl, Alert, AlertIcon, Heading, Text } from "@chakra-ui/react";
-import { password, email } from "../utils/Validation"; // Importar validaciones
+import { Box, Input, Button, FormLabel, FormControl, Heading, Text } from "@chakra-ui/react";
 
 const Register = () => {
-  const { registerUser, user } = useAuth();
+  const { register } = useAuth();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
   const navigate = useNavigate();
-  const { register, handleSubmit, formState: { errors } } = useForm();
 
-  useEffect(() => {
-    if (user) navigate("/");
-  }, [user, navigate]);
-
-  const handleRegister = async (data) => {
+  const handleRegister = async (e) => {
+    e.preventDefault();
     try {
-      await registerUser(data.email, data.password);
-      navigate("/");
+      await register(email, password);
+      navigate("/"); // Redirige a home después de registrarse
     } catch (err) {
       setError(err.message);
     }
@@ -31,9 +27,10 @@ const Register = () => {
       alignItems="center"
       justifyContent="center"
       mt="100px"
+      bg="white"
     >
       <Heading color="purple.600" fontSize="3xl" fontWeight="bold" mb="6" textAlign="center">
-        Registrarse
+        Regístrate
       </Heading>
 
       <Box 
@@ -48,32 +45,30 @@ const Register = () => {
         <Text fontSize="lg" fontWeight="bold" mb="6">
           Crea tu cuenta
         </Text>
-
-        <form onSubmit={handleSubmit(handleRegister)}>
-          <FormControl mb="4" isInvalid={errors.email} textAlign="left">
+        {error && <Text color="red.500">{error}</Text>}
+        <form onSubmit={handleRegister}>
+          <FormControl mb="4" textAlign="left">
             <FormLabel>Email</FormLabel>
             <Input 
-              type="email" 
+              type="email"
               placeholder="tucorreo@example.com"
-              {...register("email", email)} 
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               borderRadius="8px"
               bg="#F8F8F8"
             />
-            {errors.email && <Alert status="error" mt="2"><AlertIcon />{errors.email.message}</Alert>}
           </FormControl>
-
-          <FormControl mb="4" isInvalid={errors.password} textAlign="left">
+          <FormControl mb="4" textAlign="left">
             <FormLabel>Contraseña</FormLabel>
             <Input 
-              type="password" 
+              type="password"
               placeholder="********"
-              {...register("password", password)} 
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               borderRadius="8px"
               bg="#F8F8F8"
             />
-            {errors.password && <Alert status="error" mt="2"><AlertIcon />{errors.password.message}</Alert>}
           </FormControl>
-
           <Button 
             type="submit" 
             bg="purple.600" 

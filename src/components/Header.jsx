@@ -1,9 +1,21 @@
-import { Link } from "react-router-dom";
-import { Flex, Box, Spacer, Button, Icon, Badge } from "@chakra-ui/react";
+import { Link, useNavigate } from "react-router-dom";
+import { Flex, Box, Button, Icon, Badge } from "@chakra-ui/react";
 import { FaShoppingCart } from "react-icons/fa";
-
+import { useAuth } from "../context/AuthContext"; // Importar contexto de autenticación
 
 const Header = () => {
+  const { user, logout } = useAuth(); // Obtener usuario y función de logout
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+      navigate("/login"); // Redirigir al login después de cerrar sesión
+    } catch (error) {
+      console.error("Error al cerrar sesión:", error.message);
+    }
+  };
+
   return (
     <Flex
       as="nav"
@@ -13,59 +25,55 @@ const Header = () => {
       boxShadow="md"
       borderBottom="2px solid pink.600"
     >
-      {/* Logo o Home - Sin hover */}
+      {/* Logo o Home */}
       <Box>
         <Link to="/">
-          <Button
-            variant="ghost"
-            fontSize="xl"
-            fontWeight="bold"
-            color="white"
-            _hover={{ bg: "transparent" }} 
-            _active={{ bg: "transparent" }} 
-          >
+          <Button variant="ghost" fontSize="xl" fontWeight="bold" color="white" _hover={{ bg: "transparent" }}>
             CodeMaster Academy
           </Button>
         </Link>
       </Box>
 
-      {/* Links de navegación - Hover igual a "Registrarse" */}
+      {/* Links de navegación */}
       <Flex gap={4} ml="auto">
         <Link to="/">
-          <Button variant="ghost" color="white" _hover={{ bg: "pink.600", color: "white" }}>
+          <Button variant="ghost" color="white" _hover={{ bg: "pink.600" }}>
             Home
           </Button>
         </Link>
         <Link to="/courses">
-          <Button variant="ghost" color="white" _hover={{ bg: "pink.600", color: "white" }}>
+          <Button variant="ghost" color="white" _hover={{ bg: "pink.600" }}>
             Lista de Cursos
           </Button>
         </Link>
-        <Link to="/login">
-          <Button variant="outline" colorScheme="whiteAlpha" _hover={{ bg: "pink.600", color: "white" }}>
-            Iniciar Sesión
+
+        {user ? (
+          // Si el usuario está autenticado, mostrar "Cerrar Sesión"
+          <Button colorScheme="whiteAlpha" _hover={{ bg: "pink.600", color: "white" }} onClick={handleLogout}>
+            Cerrar Sesión
           </Button>
-        </Link>
-        <Link to="/register">
-          <Button colorScheme="whiteAlpha">Registrarse</Button>
-        </Link>
+        ) : (
+          // Si no está autenticado, mostrar "Iniciar Sesión" y "Registrarse"
+          <>
+            <Link to="/login">
+              <Button variant="outline" colorScheme="whiteAlpha" _hover={{ bg: "pink.600", color: "white" }}>
+                Iniciar Sesión
+              </Button>
+            </Link>
+            <Link to="/register">
+              <Button colorScheme="whiteAlpha">Registrarse</Button>
+            </Link>
+          </>
+        )}
       </Flex>
 
       {/* Icono del carrito */}
       <Box position="relative" ml={4}>
         <Link to="/carrito">
-          <Button variant="ghost" color="white" _hover={{ bg: "pink.600", color: "white" }}>
+          <Button variant="ghost" color="white" _hover={{ bg: "pink.600" }}>
             <Icon as={FaShoppingCart} boxSize={6} />
-            <Badge
-              colorScheme="red"
-              borderRadius="full"
-              position="absolute"
-              top="-2px"
-              right="-2px"
-              fontSize="xs"
-              px={2}
-            >
-              3 {/* Cambiar esto por el estado del carrito */}
+            <Badge colorScheme="red" borderRadius="full" position="absolute" top="-2px" right="-2px" fontSize="xs" px={2}>
+              3 {/* Aquí deberías usar el estado real del carrito */}
             </Badge>
           </Button>
         </Link>

@@ -51,7 +51,7 @@ const Home = () => {
             _hover={{ bg: "#AA60C8", color: "white" }}
             _active={{ bg: "#AA60C8", color: "white" }}
             borderRadius="30px"
-            px="8"
+            px="8"  
             py="3"
             border="2px solid #AA60C8"
           >
