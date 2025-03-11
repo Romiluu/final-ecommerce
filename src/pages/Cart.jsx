@@ -10,9 +10,11 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext"; // Importar el contexto de autenticación
 
 const Cart = () => {
   const { cart, removeFromCart, clearCart, total } = useCart();
+  const { user } = useAuth(); // Obtener el usuario del contexto de autenticación
   const toast = useToast();
   const navigate = useNavigate();
 
@@ -21,7 +23,7 @@ const Cart = () => {
       <Box textAlign="center" p={10}>
         <Heading size="xl" mb={6} color="purple.600">🛒 Carrito vacío</Heading>
         <Text>No tienes cursos en el carrito.</Text>
-        <Link to="/Courses">
+        <Link to="/">
           <Button bg="purple.500" color="white" _hover={{ bg: "purple.700" }} mt={4}>
             Volver a la tienda
           </Button>
@@ -30,7 +32,20 @@ const Cart = () => {
     );
   }
 
+  // Función para manejar la finalización de la compra
   const handleCheckout = () => {
+    if (!user) {
+      toast({
+        title: "Acción no permitida",
+        description: "Debes iniciar sesión para finalizar la compra.",
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+      });
+      navigate("/login"); // Redirigir al login si no está autenticado
+      return;
+    }
+
     toast({
       title: "Compra Finalizada",
       description: "¡Tu compra ha sido realizada con éxito!",
@@ -88,7 +103,7 @@ const Cart = () => {
             color="white" 
             width="100%" 
             _hover={{ bgGradient: "linear(to-r, pink.600, purple.700)" }}
-            onClick={handleCheckout}
+            onClick={handleCheckout} // Solo ejecutará la compra si el usuario está autenticado
           >
             Finalizar Compra
           </Button>

@@ -2,9 +2,11 @@ import { Link, useNavigate } from "react-router-dom";
 import { Flex, Box, Button, Icon, Badge } from "@chakra-ui/react";
 import { FaShoppingCart } from "react-icons/fa";
 import { useAuth } from "../context/AuthContext"; // Importar contexto de autenticación
+import { useCart } from "../context/CartContext"; // Importar contexto de carrito
 
 const Header = () => {
   const { user, logout } = useAuth(); // Obtener usuario y función de logout
+  const { cart } = useCart(); // Obtener carrito desde el contexto
   const navigate = useNavigate();
 
   const handleLogout = async () => {
@@ -15,6 +17,9 @@ const Header = () => {
       console.error("Error al cerrar sesión:", error.message);
     }
   };
+
+  // Calcular la cantidad total de cursos en el carrito
+  const totalQuantity = cart.reduce((total, course) => total + course.quantity, 0);
 
   return (
     <Flex
@@ -73,7 +78,7 @@ const Header = () => {
           <Button variant="ghost" color="white" _hover={{ bg: "pink.600" }}>
             <Icon as={FaShoppingCart} boxSize={6} />
             <Badge colorScheme="red" borderRadius="full" position="absolute" top="-2px" right="-2px" fontSize="xs" px={2}>
-              3 {/* Aquí deberías usar el estado real del carrito */}
+              {totalQuantity} {/* Mostrar la cantidad total de cursos en el carrito */}
             </Badge>
           </Button>
         </Link>
