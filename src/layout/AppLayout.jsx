@@ -16,12 +16,12 @@ const AppLayout = () => {
     bg="white"
   >
 
-      {/* 🏠 Header */}
+      {/* Header */}
       <GridItem area="header">
         <Header /> 
       </GridItem>
 
-      {/* 📌 Main */}
+      {/* Main */}
       <GridItem
       area="main"
       bg="transparent"
@@ -37,7 +37,7 @@ const AppLayout = () => {
         <Routing />
       </GridItem>
 
-      {/* 📌 Footer */}
+      {/* Footer */}
       <GridItem area="footer" alignSelf="flex-end">
 
         <Footer />
