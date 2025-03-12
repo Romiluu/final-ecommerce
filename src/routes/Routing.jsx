@@ -7,6 +7,7 @@ import Register from "../pages/auth/Register";
 import Cart from "../pages/Cart";
 import NotFound from "../pages/NotFound";
 import ProtectedRoute from "../pages/ProtectedRoutes";
+import Data from "../pages/Data";
 
  
  const Routing = () => {
@@ -18,6 +19,7 @@ import ProtectedRoute from "../pages/ProtectedRoutes";
        <Route path="/courses" element={<CoursesList />} />
        <Route path="/courses/:id" element={<CoursesDetails/>} />
        <Route path="/cart" element={<ProtectedRoute><Cart /></ProtectedRoute>}/>
+       <Route path="/datos" element={<ProtectedRoute><Data/></ProtectedRoute>}/>
        <Route path="*" element={<NotFound />} />
      </Routes>
    );

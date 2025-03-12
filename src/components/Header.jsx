@@ -53,10 +53,17 @@ const Header = () => {
         </Link>
 
         {user ? (
-          // Si el usuario está autenticado, mostrar "Cerrar Sesión"
-          <Button colorScheme="whiteAlpha" _hover={{ bg: "pink.600", color: "white" }} onClick={handleLogout}>
-            Cerrar Sesión
-          </Button>
+          // Si el usuario está autenticado, mostrar "Mis Datos" y "Cerrar Sesión"
+          <>
+            <Link to="/datos">
+              <Button variant="outline" colorScheme="whiteAlpha" _hover={{ bg: "pink.600", color: "white" }}>
+                Mis Datos
+              </Button>
+            </Link>
+            <Button colorScheme="whiteAlpha" _hover={{ bg: "pink.600", color: "white" }} onClick={handleLogout}>
+              Cerrar Sesión
+            </Button>
+          </>
         ) : (
           // Si no está autenticado, mostrar "Iniciar Sesión" y "Registrarse"
           <>
@@ -88,3 +95,4 @@ const Header = () => {
 };
 
 export default Header;
+

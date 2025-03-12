@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "../../context/AuthContext";
-import { useNavigate } from "react-router-dom";
-import { Box, Input, Button, FormLabel, FormControl, Heading, Text } from "@chakra-ui/react";
+import { useNavigate, useLocation } from "react-router-dom";
+import { Box, Input, Button, FormLabel, FormControl, Heading, Text, useToast } from "@chakra-ui/react";
 
 const Login = () => {
   const { login, signInWithGoogle, user } = useAuth();
@@ -9,10 +9,22 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+  const location = useLocation();
+  const toast = useToast();
 
   useEffect(() => {
     if (user) navigate("/");
-  }, [user, navigate]);
+    
+    if (location.state?.from) {
+      toast({
+        title: "Inicia sesión",
+        description: "Debes iniciar sesión para ver el carrito.",
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+      });
+    }
+  }, [user, navigate, location, toast]);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -33,23 +45,17 @@ const Login = () => {
       mt="100px"
       bg="white"
     >
-      <Heading 
-        color="purple.600" 
-        fontSize="3xl" 
-        fontWeight="bold" 
-        mb="6"
-        textAlign="center"
-      >
+      <Heading color="purple.600" fontSize="3xl" fontWeight="bold" mb="6" textAlign="center">
         Inicia Sesión
       </Heading>
 
       <Box 
         width="400px" 
-        minH="450px" // Aumentamos la altura de la tarjeta
-        p="10" // Aumentamos el padding
+        minH="450px"
+        p="10"
         bg="white"
         borderRadius="12px"
-        boxShadow="0px 4px 12px rgba(128, 0, 128, 0.4)" // Sombra violeta
+        boxShadow="0px 4px 12px rgba(128, 0, 128, 0.4)"
         textAlign="center"
       >
         <Text fontSize="lg" fontWeight="bold" mb="6">
