@@ -4,6 +4,8 @@ import { db } from "../firebase/FireBaseConfig";
 import { Box, Center, Heading, Image, SimpleGrid, Text, VStack, Flex } from "@chakra-ui/react";  
 import CodeMasterImage from "../assets/CodeMaster.png";
 import AboutImage from "../assets/about.jpg"; 
+import { Link as RouterLink } from "react-router-dom";
+import { Button } from "@chakra-ui/react";
 
 const Home = () => {
   const [courses, setCourses] = useState([]);
@@ -30,20 +32,37 @@ const Home = () => {
       {/* Sección de Introducción */}
       <Center>
         <VStack spacing={6} textAlign="center" maxWidth="800px" mx="auto">
-          <Image 
-            src={CodeMasterImage} 
-            alt="CodeMaster" 
-            maxWidth={{ base: "90%", md: "70%", lg: "70%" }} 
-            height="auto"
-          />
-          <Heading fontSize={{ base: "2xl", md: "3xl" }} fontWeight="bold" color="purple.600">
-            CONOCE NUESTROS CURSOS
-          </Heading>
-          <Text fontSize={{ base: "md", md: "lg" }} color="gray.600" maxWidth="700px" fontWeight="normal">
-            Explora nuestra selección de cursos diseñados para brindarte las mejores habilidades en programación y tecnología. 
-            Ya sea que busques iniciarte en la programación o mejorar tus conocimientos, tenemos opciones para ti.
-          </Text>
-        </VStack>
+        <Image 
+          src={CodeMasterImage} 
+          alt="CodeMaster" 
+          maxWidth={{ base: "90%", md: "70%", lg: "70%" }} 
+          height="auto"
+        />
+        <Heading fontSize={{ base: "2xl", md: "3xl" }} fontWeight="bold" color="purple.600">
+          CONOCE NUESTROS CURSOS
+        </Heading>
+        <Text fontSize={{ base: "md", md: "lg" }} color="gray.600" maxWidth="700px" fontWeight="normal">
+          Explora nuestra selección de cursos diseñados para brindarte las mejores habilidades en programación y tecnología. 
+          Ya sea que busques iniciarte en la programación o mejorar tus conocimientos, tenemos opciones para ti.
+        </Text>
+
+        {/* Botón "Ver Cursos Disponibles" */}
+        <Button
+          as={RouterLink}
+          to="/courses"
+          bg="white"
+          color="#AA60C8"
+          fontWeight="bold"
+          _hover={{ bg: "#AA60C8", color: "white" }}
+          _active={{ bg: "#AA60C8", color: "white" }}
+          borderRadius="30px"
+          px="8"
+          py="3"
+          border="2px solid #AA60C8"
+        >
+          Ver Cursos Disponibles
+        </Button>
+      </VStack>
       </Center>
 
       {/* Grid de Cursos */}
