@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { Box, Input, Button, FormLabel, FormControl, Heading, Text } from "@chakra-ui/react";
 
