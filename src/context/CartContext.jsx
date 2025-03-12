@@ -1,34 +1,48 @@
 import { createContext, useContext, useState } from "react";
 
-// Creamos el contexto
 const CartContext = createContext();
 
-// Hook personalizado para usar el carrito
 export const useCart = () => useContext(CartContext);
 
-// Proveedor del carrito
 export const CartProvider = ({ children }) => {
-  const [cart, setCart] = useState([]); // Estado del carrito
+  const [cart, setCart] = useState([]);
 
-  // Función para agregar cursos al carrito
+  // Agregar un curso al carrito
   const addToCart = (course) => {
-    const existingCourse = cart.find((item) => item.id === course.id);
-    if (existingCourse) {
-      setCart((prevCart) =>
-        prevCart.map((item) =>
-          item.id === course.id
-            ? { ...item, quantity: item.quantity + 1 }
-            : item
-        )
-      );
-    } else {
-      setCart((prevCart) => [...prevCart, { ...course, quantity: 1 }]);
-    }
+    setCart((prevCart) => {
+      const existingItem = prevCart.find((item) => item.id === course.id);
+      if (existingItem) {
+        return prevCart.map((item) =>
+          item.id === course.id ? { ...item, quantity: item.quantity + 1 } : item
+        );
+      }
+      return [...prevCart, { ...course, quantity: 1 }];
+    });
   };
 
-  // Función para eliminar un curso del carrito
-  const removeFromCart = (id) => {
-    setCart((prevCart) => prevCart.filter((item) => item.id !== id));
+  // Aumentar la cantidad de un curso
+  const increaseQuantity = (courseId) => {
+    setCart((prevCart) =>
+      prevCart.map((item) =>
+        item.id === courseId ? { ...item, quantity: item.quantity + 1 } : item
+      )
+    );
+  };
+
+  // Disminuir la cantidad de un curso
+  const decreaseQuantity = (courseId) => {
+    setCart((prevCart) =>
+      prevCart
+        .map((item) =>
+          item.id === courseId ? { ...item, quantity: item.quantity - 1 } : item
+        )
+        .filter((item) => item.quantity > 0) // Elimina el producto si la cantidad llega a 0
+    );
+  };
+
+  // Eliminar un curso del carrito
+  const removeFromCart = (courseId) => {
+    setCart((prevCart) => prevCart.filter((item) => item.id !== courseId));
   };
 
   // Vaciar carrito
@@ -38,7 +52,9 @@ export const CartProvider = ({ children }) => {
   const total = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
   return (
-    <CartContext.Provider value={{ cart, addToCart, removeFromCart, clearCart, total }}>
+    <CartContext.Provider
+      value={{ cart, addToCart, increaseQuantity, decreaseQuantity, removeFromCart, clearCart, total }}
+    >
       {children}
     </CartContext.Provider>
   );

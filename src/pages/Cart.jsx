@@ -8,13 +8,16 @@ import {
   Image,
   Divider,
   useToast,
+  HStack,
+  IconButton
 } from "@chakra-ui/react";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../context/AuthContext"; // Importar el contexto de autenticación
+import { useAuth } from "../context/AuthContext";
+import { FaPlus, FaMinus } from "react-icons/fa"; // Importar iconos
 
 const Cart = () => {
-  const { cart, removeFromCart, clearCart, total } = useCart();
-  const { user } = useAuth(); // Obtener el usuario del contexto de autenticación
+  const { cart, removeFromCart, clearCart, total, increaseQuantity, decreaseQuantity } = useCart();
+  const { user } = useAuth();
   const toast = useToast();
   const navigate = useNavigate();
 
@@ -32,7 +35,6 @@ const Cart = () => {
     );
   }
 
-  // Función para manejar la finalización de la compra
   const handleCheckout = () => {
     toast({
       title: "Compra Finalizada",
@@ -50,7 +52,7 @@ const Cart = () => {
     <Box p={10} maxW="800px" mx="auto">
       <Heading size="xl" mb={6} color="purple.600">Carrito de Compras</Heading>
 
-      <VStack spacing={4} align="start" width="100%" >
+      <VStack spacing={4} align="start" width="100%">
         {cart.map((course) => (
           <Box 
             key={course.id} 
@@ -67,7 +69,28 @@ const Cart = () => {
               )}
               <Heading as="h3" size="md" color="purple.700">{course.name}</Heading>
               <Text>Precio: <strong>${course.price}</strong></Text>
-              <Text>Cantidad: {course.quantity}</Text>
+              
+              {/* Contenedor para cantidad con botones */}
+              <HStack>
+                <IconButton 
+                  icon={<FaMinus />} 
+                  onClick={() => decreaseQuantity(course.id)} 
+                  size="sm" 
+                  bg="gray.300" 
+                  _hover={{ bg: "gray.400" }} 
+                  aria-label="Disminuir cantidad"
+                />
+                <Text fontSize="lg" fontWeight="bold">{course.quantity}</Text>
+                <IconButton 
+                  icon={<FaPlus />} 
+                  onClick={() => increaseQuantity(course.id)} 
+                  size="sm" 
+                  bg="gray.300" 
+                  _hover={{ bg: "gray.400" }} 
+                  aria-label="Aumentar cantidad"
+                />
+              </HStack>
+
               <Button 
                 bg="pink.500" 
                 color="white" 
@@ -91,7 +114,7 @@ const Cart = () => {
             color="white" 
             width="100%" 
             _hover={{ bgGradient: "linear(to-r, pink.600, purple.700)" }}
-            onClick={handleCheckout} // Solo ejecutará la compra si el usuario está autenticado
+            onClick={handleCheckout}
           >
             Finalizar Compra
           </Button>
@@ -111,3 +134,4 @@ const Cart = () => {
 };
 
 export default Cart;
+  
