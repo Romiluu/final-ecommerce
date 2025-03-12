@@ -34,18 +34,6 @@ const Cart = () => {
 
   // Función para manejar la finalización de la compra
   const handleCheckout = () => {
-    if (!user) {
-      toast({
-        title: "Acción no permitida",
-        description: "Debes iniciar sesión para finalizar la compra.",
-        status: "error",
-        duration: 3000,
-        isClosable: true,
-      });
-      navigate("/login"); // Redirigir al login si no está autenticado
-      return;
-    }
-
     toast({
       title: "Compra Finalizada",
       description: "¡Tu compra ha sido realizada con éxito!",

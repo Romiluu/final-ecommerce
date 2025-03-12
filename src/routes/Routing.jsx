@@ -6,6 +6,7 @@ import Login from "../pages/auth/Login";
 import Register from "../pages/auth/Register";
 import Cart from "../pages/Cart";
 import NotFound from "../pages/NotFound";
+import ProtectedRoute from "../pages/ProtectedRoutes";
 
  
  const Routing = () => {
@@ -16,10 +17,10 @@ import NotFound from "../pages/NotFound";
        <Route path="/register" element={<Register />} />
        <Route path="/courses" element={<CoursesList />} />
        <Route path="/courses/:id" element={<CoursesDetails/>} />
-       <Route path="/cart" element={<Cart />} />
+       <Route path="/cart" element={<ProtectedRoute><Cart /></ProtectedRoute>}/>
        <Route path="*" element={<NotFound />} />
      </Routes>
    );
  };
  
- export default Routing;
+ export default Routing;  
