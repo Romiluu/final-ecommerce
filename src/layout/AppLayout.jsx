@@ -8,35 +8,38 @@ const AppLayout = () => {
   return (
     <Grid
     templateAreas={`"header" "main" "footer"`}
-    gridTemplateRows={"80px 1fr 50px"}
+    gridTemplateRows={"80px 1fr auto"}
     gridTemplateColumns={"1fr"}
     gap="1"
     fontWeight="bold"
-    minHeight="100vh"
-    bg="white" // Fondo del contenido principal en blanco
-    >
+    minHeight="100vh" 
+    bg="white"
+  >
+
       {/* 🏠 Header */}
       <GridItem area="header">
-        <Header /> {/* 👈 Aquí se llama al Header */}
+        <Header /> 
       </GridItem>
 
       {/* 📌 Main */}
       <GridItem
-        area="main"
-        minH="100vh"
-        bg="transparent"
-        display="flex"
-        flexDirection="column"
-        justifyContent="flex-start"
-        paddingBottom="50px"
-        p="4"
-      >
+      area="main"
+      bg="transparent"
+      display="flex"
+      flexDirection="column"
+      justifyContent="flex-start"
+      alignItems="center" 
+      flexShrink={1} // Evita que crezca demasiado
+      paddingBottom="20px"
+      p="4"
+    >
         <ScrollToTop />
         <Routing />
       </GridItem>
 
       {/* 📌 Footer */}
-      <GridItem area="footer">
+      <GridItem area="footer" alignSelf="flex-end">
+
         <Footer />
       </GridItem>
     </Grid>

@@ -94,7 +94,8 @@ const CourseDetails = () => {
     };
 
     return (
-        <Box display="flex" justifyContent="center" alignItems="center" height="700px">
+        <Box display="flex" justifyContent="center" alignItems="center" minHeight="70vh">
+
             <CardChakra maxW="800px" width="100%" boxShadow="0px 4px 10px rgba(255, 105, 180, 0.5)" margin="auto">
                 <CardBody>
                     <Box display="flex" justifyContent="center">

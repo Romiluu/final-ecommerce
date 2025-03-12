@@ -24,7 +24,7 @@ const Cart = () => {
   if (cart.length === 0) {
     return (
       <Box textAlign="center" p={10}>
-        <Heading size="xl" mb={6} color="purple.600">🛒 Carrito vacío</Heading>
+        <Heading  size={{ base: "lg", md: "xl" }}  mb={6} color="purple.600">🛒 Carrito vacío</Heading>
         <Text>No tienes cursos en el carrito.</Text>
         <Link to="/courses">
           <Button bg="purple.500" color="white" _hover={{ bg: "purple.700" }} mt={4}>
