@@ -1,12 +1,59 @@
-# React + Vite
+  #  CodeMaster Academy- Ecommerce 💻 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+  Desplegado en 🚀
+  https://codemasteracademy.netlify.app/
+ 
+  ## Descripción
+  CodeMaster Academy - Ecommerce es un proyecto final desarrollado en ADA ITW, cuyo objetivo es crear un ecommerce interactivo para la venta de cursos de IT.
 
-Currently, two official plugins are available:
+Este ecommerce permite a los usuarios explorar distintos cursos de tecnología, agregarlos al carrito y simular una compra. Además, implementa autenticación para gestionar sesiones de usuario y proteger ciertas funcionalidades.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+El proyecto fue desarrollado utilizando React, Firebase como backend y Chakra UI para la interfaz. Se priorizó un diseño responsivo, una navegación intuitiva y una experiencia de usuario fluida.
 
-## Expanding the ESLint configuration
+ ## Pre-requisitos 📋
+ 
+-  Node.js y npm instalados.
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Instalación 🔧
+  1. Clona el repositorio:
+
+     ```bash
+     git clone https://github.com/Romiluu/final-project-ecommerce.git
+     cd Todo-List
+
+  2. Instala las dependencias:
+    
+      ```bash
+      yarn add
+  3. Inicia el proyecto: 
+
+     ```bash
+      yarn dev
+
+## Tecnologías 🛠️
+- React: Librería para construir interfaces de usuario. ⚛️
+- Chakra UI: Framework de componentes accesibles para React. 🌈
+- Firebase: Backend como servicio para manejar autenticación y base de datos en tiempo real. 🔥
+- React Router DOM: Librería para manejar rutas y navegación en una aplicación React. 🛤️
+
+## Funcionalidades 🚀
+- Iniciar Sesión: Permite a los usuarios autenticarse para acceder a sus cuentas. 🔑
+- Registrarse: Los nuevos usuarios pueden crear una cuenta para comenzar a usar la aplicación. 📝
+- Ver Productos: Muestra una lista de cursos disponibles en la tienda. 💻
+- Ver datos: Los usuarios pueden ver datos de su cuenta como Nombre, Email y fecha de creacion de cuenta.⚙️
+- Filtrar por precio y nombre: Los usuarios pueden filtrar por menor o mayor precio y en irden alfabetico. ❤️
+- Agregar al Carrito: Los usuarios pueden añadir productos al carrito de compras (requiere iniciar sesión). 🛒
+- Vaciar Carrito: Opción para eliminar todos los productos del carrito. 🗑️
+- Comprar (Simulación): Los usuarios pueden simular la compra de los productos en el carrito. 💳
+
+> **Nota:** Es necesario estar logueado para agregar productos al carrito y ver los datos del usuario. 🔒
+---
+💟Quiero expresar mi gratitud a mi profesora por su guía y paciencia a lo largo de este proyecto, así como por su invaluable apoyo en cada etapa del desarrollo. 🙌  
+También agradezco al equipo de ADA ITW por brindar un espacio de aprendizaje colaborativo y motivador, que me permitió crecer tanto técnica como profesionalmente. 🚀💜
+
+Diseñado con ♡ por Romina
+
+###### Contacto
+LinkedIn:  [Romina Luna](http://www.linkedin.com/in/romina-luna04/ "Heading link")
+
+Correo Electrónico: Romiluna04@gmail.com
