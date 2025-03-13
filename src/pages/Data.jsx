@@ -25,7 +25,7 @@ const MisDatos = () => {
       mt={6} 
       borderWidth={1} 
       borderRadius="lg" 
-      boxShadow="0px 4px 10px rgba(255, 105, 180, 0.4)" // Sombra rosa
+      boxShadow="0px 4px 10px rgba(255, 105, 180, 0.4)"
     >
       <Heading size="lg" mb={4} color="purple.600" fontWeight="medium">
         Mis Datos

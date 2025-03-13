@@ -25,7 +25,7 @@ const Header = () => {
   const { cart } = useCart();
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false); // Estado del menú móvil
-  const isMobile = useBreakpointValue({ base: true, md: false }); // Detecta si es móvil
+  const isMobile = useBreakpointValue({ base: true, md: false }); 
 
   const handleLogout = async () => {
     try {

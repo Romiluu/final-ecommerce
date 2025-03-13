@@ -95,7 +95,7 @@ const Home = () => {
       {/* Sección Sobre Nosotros */}
       <Box mt={20} p={{ base: 6, md: 12 }}>
         <Flex 
-          direction={{ base: "column", md: "column", lg: "row" }}  // En tablets, imagen arriba y texto abajo
+          direction={{ base: "column", md: "column", lg: "row" }} 
           align="center" 
           justify="center" 
           gap={12}
